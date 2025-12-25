@@ -1,6 +1,6 @@
 #!/bin/sh
 # pushes changes to all repos inside the dir
-DIR=~/eudaimonia/
+$EUDAIMONIA=~/eudaimonia/
 
 cd $EUDAIMONIA
 # Loop and push all sub-modules
