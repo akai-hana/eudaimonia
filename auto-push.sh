@@ -3,6 +3,7 @@
 DIR=~/eudaimonia/
 
 cd $DIR
+# Loop and push all sub-modules
 for dir in */; do
     cd "$dir" || continue
     
@@ -14,4 +15,9 @@ for dir in */; do
     fi
     
     cd ..
+    # Push eudaimonia
+    echo "Syncing $dir"
+    git add .
+    git commit -m "automated sync"
+    git push
 done
