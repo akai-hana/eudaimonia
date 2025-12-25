@@ -1,3 +1,6 @@
 [submodule "dotfiles"]
 	path = dotfiles
 	url = git@github.com:akai-hana/dotfiles.git
+[submodule "suckless"]
+	path = suckless
+	url = git@github.com:akai-hana/suckless.git
