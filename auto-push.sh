@@ -1,5 +1,8 @@
 #!/bin/sh
 # pushes changes to all repos inside the dir
+DIR=~/eudaimonia/
+
+cd $DIR
 for dir in */; do
     cd "$dir" || continue
     
