@@ -7,3 +7,9 @@
 [submodule "scripts"]
 	path = scripts
 	url = git@github.com:akai-hana/scripts.git
+[submodule "lenovo-legion"]
+	path = lenovo-legion
+	url = git@github.com:akai-hana/lenovo-legion.git
+[submodule "shader-wallpaper"]
+	path = shader-wallpaper
+	url = git@github.com:akai-hana/shader-wallpaper.git
