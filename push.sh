@@ -85,7 +85,7 @@ EOF
     fi
 else
     # No changes to commit
-    notify-send "✓ eudaimonia" "<i>Meta-repository nothing to sync</i>" -u low -t 3000 -h string:body-markup:true
+    notify-send "✓ eudaimonia" "<i>Nothing to sync</i>" -u low -t 3000 -h string:body-markup:true
 fi
 
 printf "\n${GREEN}DONE!${RESET}\n"
