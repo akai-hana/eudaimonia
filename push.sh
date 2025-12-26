@@ -45,14 +45,14 @@ for DIR in */; do
                 TEMP_FILES=$(echo "$CHANGED_FILES" | sed 's/^/  - /' | tr '\n' ';')
                 
                 if git push 2>&1 | grep -q "Everything up-to-date"; then
-                    notify-send "📦 <b>$DIR</b>" "Committed but already up-to-date" -u low -t 3000 -h string:body-markup:true
+                    notify-send "📦 $DIR" "Committed but already <b>up-to-date</b>" -u low -t 3000 -h string:body-markup:true
                 else
-                    notify-send "✨ <b>$DIR</b>" "<big>Changes pushed</big> successfully" -u low -t 3000 -h string:body-markup:true
+                    notify-send "✨ $DIR" "<big><b>Changes pushed</b> successfully</big>" -u low -t 3000 -h string:body-markup:true
                 fi
             fi
         else
             # No changes to commit
-            notify-send "✓ <b>$DIR</b>" "Nothing to sync" -u low -t 3000 -h string:body-markup:true
+            notify-send "✓ $DIR" "<i>Nothing to sync</i>" -u low -t 3000 -h string:body-markup:true
         fi
     fi
     cd ..
@@ -77,13 +77,13 @@ if git commit -m "automated sync" >/dev/null 2>&1; then
     fi
     
     if git push 2>&1 | grep -q "Everything up-to-date"; then
-        notify-send "📦 <b>eudaimonia</b>" "Committed but already up-to-date" -u low -t 3000 -h string:body-markup:true
+        notify-send "📦 eudaimonia" "Committed but already <b>up-to-date</b>" -u low -t 3000 -h string:body-markup:true
     else
-        notify-send "✨ <b>eudaimonia</b>" "<big>Meta-repository changes pushed</big>" -u low -t 3000 -h string:body-markup:true
+        notify-send "✨ eudaimonia" "<big><b>Meta-repository changes pushed</b></big>" -u low -t 3000 -h string:body-markup:true
     fi
 else
     # No changes to commit
-    notify-send "✓ <b>eudaimonia</b>" "Meta-repository nothing to sync" -u low -t 3000 -h string:body-markup:true
+    notify-send "✓ eudaimonia" "<i>Meta-repository nothing to sync</i>" -u low -t 3000 -h string:body-markup:true
 fi
 
 printf "\n${GREEN}DONE!${RESET}\n"
@@ -95,8 +95,8 @@ if [ -n "$REPOS_WITH_CHANGES" ]; then
     
     # Send summary notification
     REPO_COUNT=$(echo "$REPOS_WITH_CHANGES" | wc -w)
-    notify-send "✅ <b>Eudaimonia Sync Complete</b>" "<big>Changes pushed</big> in <b>$REPO_COUNT repo(s)</b>:\n$REPOS_WITH_CHANGES" -u normal -t 8000 -h string:body-markup:true
+    notify-send "✅ Eudaimonia Sync Complete" "<big><b>Changes pushed</b></big> in <b>$REPO_COUNT</b> repo(s):\n$REPOS_WITH_CHANGES" -u normal -t 8000 -h string:body-markup:true
 else
     printf "\n${YELLOW}No changes in any repository.${RESET}\n"
-    notify-send "✅ <b>Eudaimonia Sync Complete</b>" "All repositories already <b>up-to-date</b>" -u normal -h string:body-markup:true
+    notify-send "✅ Eudaimonia Sync Complete" "All repositories already <b>up-to-date</b>" -u normal -h string:body-markup:true
 fi
