@@ -95,7 +95,7 @@ if [ -n "$REPOS_WITH_CHANGES" ]; then
     
     # Send summary notification
     REPO_COUNT=$(echo "$REPOS_WITH_CHANGES" | wc -w)
-    notify-send "✅ Eudaimonia Sync Complete" "<big><b>Changes pushed</b></big> in <b>$REPO_COUNT</b> repo(s):\n$REPOS_WITH_CHANGES" -u normal -t 8000 -h string:body-markup:true
+    notify-send "✅ Eudaimonia Sync Complete" "<big><b>$REPO_COUNT repo(s) updated</b></big>\n$REPOS_WITH_CHANGES" -u normal -t 8000 -h string:body-markup:true
 else
     printf "\n${YELLOW}No changes in any repository.${RESET}\n"
     notify-send "✅ Eudaimonia Sync Complete" "All repositories already <b>up-to-date</b>" -u normal -h string:body-markup:true
