@@ -38,11 +38,11 @@ for DIR in */; do
             
             # Add changed files to summary
             if [ -n "$CHANGED_FILES" ]; then
-                echo "$CHANGED_FILES" | while read -r file; do
+                while IFS= read -r file; do
                     CHANGES_SUMMARY="${CHANGES_SUMMARY}  - ${file}\n"
-                done
-                # Store for this iteration
-                TEMP_FILES=$(echo "$CHANGED_FILES" | sed 's/^/  - /' | tr '\n' ';')
+                done <<EOF
+$CHANGED_FILES
+EOF
                 
                 if git push 2>&1 | grep -q "Everything up-to-date"; then
                     notify-send "📦 $DIR" "Committed but already <b>up-to-date</b>" -u low -t 3000 -h string:body-markup:true
@@ -71,9 +71,11 @@ if git commit -m "automated sync" >/dev/null 2>&1; then
     CHANGES_SUMMARY="${CHANGES_SUMMARY}\n${BOLD}eudaimonia (meta):${RESET}\n"
     
     if [ -n "$CHANGED_FILES" ]; then
-        echo "$CHANGED_FILES" | while read -r file; do
+        while IFS= read -r file; do
             CHANGES_SUMMARY="${CHANGES_SUMMARY}  - ${file}\n"
-        done
+        done <<EOF
+$CHANGED_FILES
+EOF
     fi
     
     if git push 2>&1 | grep -q "Everything up-to-date"; then
@@ -91,7 +93,7 @@ printf "\n${GREEN}DONE!${RESET}\n"
 # Display summary of changes
 if [ -n "$REPOS_WITH_CHANGES" ]; then
     printf "\n${CYAN}${BOLD}==> SUMMARY OF CHANGES:${RESET}\n"
-    printf "${CHANGES_SUMMARY}"
+    printf "%b\n" "$CHANGES_SUMMARY"
     
     # Send summary notification
     REPO_COUNT=$(echo "$REPOS_WITH_CHANGES" | wc -w)
