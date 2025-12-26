@@ -11,7 +11,7 @@ RESET='\033[0m'
 cd ~/eudaimonia || exit 1
 
 # Starting notification
-notify-send "🔄 Eudaimonia Sync" "Starting sync of all submodules..." -u normal
+notify-send "🔄 Eudaimonia Sync" "<b>Starting sync</b> of all submodules..." -u normal -h string:body-markup:true
 
 printf "${CYAN}==> syncing all submodules...${RESET}\n"
 
@@ -45,14 +45,14 @@ for DIR in */; do
                 TEMP_FILES=$(echo "$CHANGED_FILES" | sed 's/^/  - /' | tr '\n' ';')
                 
                 if git push 2>&1 | grep -q "Everything up-to-date"; then
-                    notify-send "📦 $DIR" "Committed but already up-to-date" -u low -t 3000
+                    notify-send "📦 <b>$DIR</b>" "Committed but already up-to-date" -u low -t 3000 -h string:body-markup:true
                 else
-                    notify-send "✨ $DIR" "Changes pushed successfully" -u low -t 3000
+                    notify-send "✨ <b>$DIR</b>" "<big>Changes pushed</big> successfully" -u low -t 3000 -h string:body-markup:true
                 fi
             fi
         else
             # No changes to commit
-            notify-send "✓ $DIR" "Nothing to sync" -u low -t 3000
+            notify-send "✓ <b>$DIR</b>" "Nothing to sync" -u low -t 3000 -h string:body-markup:true
         fi
     fi
     cd ..
@@ -77,13 +77,13 @@ if git commit -m "automated sync" >/dev/null 2>&1; then
     fi
     
     if git push 2>&1 | grep -q "Everything up-to-date"; then
-        notify-send "📦 eudaimonia" "Committed but already up-to-date" -u low -t 3000
+        notify-send "📦 <b>eudaimonia</b>" "Committed but already up-to-date" -u low -t 3000 -h string:body-markup:true
     else
-        notify-send "✨ eudaimonia" "Meta-repository changes pushed" -u low -t 3000
+        notify-send "✨ <b>eudaimonia</b>" "<big>Meta-repository changes pushed</big>" -u low -t 3000 -h string:body-markup:true
     fi
 else
     # No changes to commit
-    notify-send "✓ eudaimonia" "Meta-repository nothing to sync" -u low -t 3000
+    notify-send "✓ <b>eudaimonia</b>" "Meta-repository nothing to sync" -u low -t 3000 -h string:body-markup:true
 fi
 
 printf "\n${GREEN}DONE!${RESET}\n"
@@ -95,8 +95,8 @@ if [ -n "$REPOS_WITH_CHANGES" ]; then
     
     # Send summary notification
     REPO_COUNT=$(echo "$REPOS_WITH_CHANGES" | wc -w)
-    notify-send "✅ Eudaimonia Sync Complete" "Changes pushed in $REPO_COUNT repo(s): $REPOS_WITH_CHANGES" -u normal -t 8000
+    notify-send "✅ <b>Eudaimonia Sync Complete</b>" "<big>Changes pushed</big> in <b>$REPO_COUNT repo(s)</b>:\n$REPOS_WITH_CHANGES" -u normal -t 8000 -h string:body-markup:true
 else
     printf "\n${YELLOW}No changes in any repository.${RESET}\n"
-    notify-send "✅ Eudaimonia Sync Complete" "All repositories already up-to-date" -u normal
+    notify-send "✅ <b>Eudaimonia Sync Complete</b>" "All repositories already <b>up-to-date</b>" -u normal -h string:body-markup:true
 fi
