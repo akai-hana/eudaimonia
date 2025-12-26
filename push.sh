@@ -1,14 +1,14 @@
 #!/bin/sh
 # pushes changes to all repos inside the dir
-EUDAIMONIA=~/eudaimonia/
 
-cd $EUDAIMONIA
-# Loop and push all sub-modules
+cd ~/eudaimonia
+# loop and push all sub-modules
 for dir in */; do
     cd "$dir" || continue
     
     if [ -d .git ] || [ -f .git ]; then
         echo "Syncing $dir"
+
         git add .
         git commit -m "automated sync"
         git push
@@ -17,9 +17,10 @@ for dir in */; do
     cd ..
 done
 
-# Push eudaimonia
-cd $EUDAIMONIA
-echo "Syncing $EUDAIMONIA"
+# push eudaimonia
+cd ~/eudaimonia
+echo "Syncing ~/eudaimonia"
+
 git add .
 git commit -m "automated sync"
 git push
