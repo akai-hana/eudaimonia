@@ -102,3 +102,4 @@ else
     printf "\n${YELLOW}No changes in any repository.${RESET}\n"
     notify-send "✅ Eudaimonia Sync Complete" "All repositories already <b>up-to-date</b>" -u normal -h string:body-markup:true
 fi
+
