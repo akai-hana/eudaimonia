@@ -13,3 +13,6 @@
 [submodule "shader-wallpaper"]
 	path = shader-wallpaper
 	url = git@github.com:akai-hana/shader-wallpaper.git
+[submodule "milk-cursor"]
+	path = milk-cursor
+	url = git@github.com:akai-hana/milk-chans-cursor.git
