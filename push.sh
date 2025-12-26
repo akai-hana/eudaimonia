@@ -22,12 +22,18 @@ for DIR in */; do
     if [ -d .git ] || [ -f .git ]; then
         printf "${YELLOW}-> syncing ${DIR}...${RESET}\n"
         
-        # Notify for each submodule
-        notify-send "📦 Syncing" "$DIR" -u low -t 3000
-        
         git add .
-        git commit -m "automated sync" >/dev/null 2>&1
-        git push
+        if git commit -m "automated sync" >/dev/null 2>&1; then
+            # Changes were committed
+            if git push 2>&1 | grep -q "Everything up-to-date"; then
+                notify-send "📦 $DIR" "Committed but already up-to-date" -u low -t 3000
+            else
+                notify-send "✨ $DIR" "Changes pushed successfully" -u low -t 3000
+            fi
+        else
+            # No changes to commit
+            notify-send "✓ $DIR" "Nothing to sync" -u low -t 3000
+        fi
     fi
     cd ..
 done
@@ -36,13 +42,20 @@ done
 cd ~/eudaimonia || exit 1
 printf "${CYAN}==> syncing eudaimonia meta-repository...${RESET}\n"
 
-notify-send "📦 Syncing" "eudaimonia meta-repository" -u low -t 3000
-
 git add .
-git commit -m "automated sync" >/dev/null 2>&1
-git push
+if git commit -m "automated sync" >/dev/null 2>&1; then
+    # Changes were committed
+    if git push 2>&1 | grep -q "Everything up-to-date"; then
+        notify-send "📦 eudaimonia" "Committed but already up-to-date" -u low -t 3000
+    else
+        notify-send "✨ eudaimonia" "Meta-repository changes pushed" -u low -t 3000
+    fi
+else
+    # No changes to commit
+    notify-send "✓ eudaimonia" "Meta-repository nothing to sync" -u low -t 3000
+fi
 
 printf "\n${GREEN}DONE!${RESET}\n"
 
 # Completion notification
-notify-send "✅ Eudaimonia Sync" "All repositories synced successfully!" -u normal``
+notify-send "✅ Eudaimonia Sync" "All repositories synced successfully!" -u normal
