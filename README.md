@@ -23,7 +23,7 @@ _noun_ · happiness; well-being. _Aristotelianism_ · happiness as the result of
 > Discussion of the links between ēthikē aretē (virtue of character) and eudaimonia (happiness) is one of the central concerns of ancient ethics, and a subject of disagreement. As a result, there are many varieties of eudaimonism.
 <div align="right">
   
-_-[Wikipedia](https://en.wikipedia.org/wiki/Eudaimonia)_
+_[Wikipedia](https://en.wikipedia.org/wiki/Eudaimonia)_
 
 </div>
 
