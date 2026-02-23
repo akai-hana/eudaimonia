@@ -12,8 +12,8 @@ RESET='\033[0m'
 cd ~/eudaimonia || exit 1
 
 # Starting notification
-notify-send "🔄 Eudaimonia Sync" "<b>Starting sync</b> of all submodules..." -u normal -h string:body-markup:true
-printf "${CYAN}==> syncing all submodules...${RESET}\n"
+notify-send "eudaimonia" "Syncing submodules..." -u normal -h string:body-markup:true
+printf "${CYAN}==> [eudaimonia] syncing submodules...${RESET}\n"
 
 # Track changes
 CHANGES_SUMMARY=""
@@ -55,7 +55,7 @@ EOF
                 # Push failed - check if it's due to upstream changes
                 if echo "$PUSH_OUTPUT" | grep -q -E "(rejected|non-fast-forward|fetch first|pull.*before pushing)"; then
                     printf "${YELLOW}   upstream changes detected, pulling first...${RESET}\n"
-                    notify-send "⬇️ $DIR" "Upstream changes detected, <b>pulling first</b>..." -u normal -t 3000 -h string:body-markup:true
+                    notify-send "⬇️ $DIR" "upstream changes detected, pulling first..." -u normal -t 3000 -h string:body-markup:true
                     
                     # Pull with rebase to integrate upstream changes
                     PULL_OUTPUT=$(git pull --rebase 2>&1)
@@ -66,9 +66,9 @@ EOF
                         
                         # Try pushing again after successful pull
                         if git push 2>&1; then
-                            notify-send "✨ $DIR" "<b>Pulled & pushed</b> successfully after upstream changes" -u normal -t 4000 -h string:body-markup:true
+                            notify-send "$DIR" "<b>Pulled & pushed</b> successfully after upstream changes" -u normal -t 4000 -h string:body-markup:true
                         else
-                            notify-send "❌ $DIR" "<b>Push failed</b> after pull - manual intervention needed" -u critical -t 5000 -h string:body-markup:true
+                            notify-send "$DIR" "<b>Push failed</b> after pull - manual intervention needed" -u critical -t 5000 -h string:body-markup:true
                             printf "${RED}   push failed after pull!${RESET}\n"
                         fi
                     else
@@ -78,13 +78,13 @@ EOF
                     fi
                 else
                     # Push failed for another reason
-                    notify-send "❌ $DIR" "<b>Push failed</b> - check repository" -u critical -t 5000 -h string:body-markup:true
+                    notify-send "$DIR" "<b>Push failed</b> - check repository" -u critical -t 5000 -h string:body-markup:true
                     printf "${RED}   push failed!${RESET}\n"
                 fi
             elif echo "$PUSH_OUTPUT" | grep -q "Everything up-to-date"; then
-                notify-send "📦 $DIR" "Committed but already <b>up-to-date</b>" -u low -t 3000 -h string:body-markup:true
+                notify-send "$DIR" "Committed but already <b>up-to-date</b>" -u low -t 3000 -h string:body-markup:true
             else
-                notify-send "✨ $DIR" "<big><b>Changes pushed</b> successfully</big>" -u low -t 3000 -h string:body-markup:true
+                notify-send "$DIR" "<big><b>Changes pushed</b> successfully</big>" -u low -t 3000 -h string:body-markup:true
             fi
         else
             # No changes to commit
@@ -133,9 +133,9 @@ EOF
                 
                 # Try pushing again
                 if git push 2>&1; then
-                    notify-send "✨ eudaimonia" "<b>Pulled & pushed</b> meta-repository after upstream changes" -u normal -t 4000 -h string:body-markup:true
+                    notify-send "eudaimonia" "<b>Pulled & pushed</b> meta-repository after upstream changes" -u normal -t 4000 -h string:body-markup:true
                 else
-                    notify-send "❌ eudaimonia" "<b>Push failed</b> after pull - manual intervention needed" -u critical -t 5000 -h string:body-markup:true
+                    notify-send "eudaimonia" "<b>Push failed</b> after pull - manual intervention needed" -u critical -t 5000 -h string:body-markup:true
                     printf "${RED}   push failed after pull!${RESET}\n"
                 fi
             else
@@ -143,13 +143,13 @@ EOF
                 printf "${RED}   pull failed - possible conflicts!${RESET}\n"
             fi
         else
-            notify-send "❌ eudaimonia" "<b>Push failed</b> - check repository" -u critical -t 5000 -h string:body-markup:true
+            notify-send "eudaimonia" "<b>Push failed</b> - check repository" -u critical -t 5000 -h string:body-markup:true
             printf "${RED}   push failed!${RESET}\n"
         fi
     elif echo "$PUSH_OUTPUT" | grep -q "Everything up-to-date"; then
-        notify-send "📦 eudaimonia" "Committed but already <b>up-to-date</b>" -u low -t 3000 -h string:body-markup:true
+        notify-send "eudaimonia" "Committed but already <b>up-to-date</b>" -u low -t 3000 -h string:body-markup:true
     else
-        notify-send "✨ eudaimonia" "<big><b>Meta-repository changes pushed</b></big>" -u low -t 3000 -h string:body-markup:true
+        notify-send "eudaimonia" "<big><b>Meta-repository changes pushed</b></big>" -u low -t 3000 -h string:body-markup:true
     fi
 else
     # No changes to commit
@@ -173,8 +173,8 @@ if [ -n "$REPOS_WITH_CHANGES" ]; then
         SUMMARY_MSG="${SUMMARY_MSG}\n\n⬇️ <b>$PULL_COUNT had upstream changes</b>\n$REPOS_WITH_PULLS"
     fi
     
-    notify-send "✅ Eudaimonia Sync Complete" "$SUMMARY_MSG" -u normal -t 8000 -h string:body-markup:true
+    notify-send "Eudaimonia Sync Complete" "$SUMMARY_MSG" -u normal -t 8000 -h string:body-markup:true
 else
     printf "\n${YELLOW}No changes in any repository.${RESET}\n"
-    notify-send "✅ Eudaimonia Sync Complete" "All repositories already <b>up-to-date</b>" -u normal -h string:body-markup:true
+    notify-send "Eudaimonia Sync Complete" "All repositories already <b>up-to-date</b>" -u normal -h string:body-markup:true
 fi
