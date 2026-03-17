@@ -18,10 +18,10 @@ cd eudaimonia
 
 # About εὐδαιμονία
 ## What is eudaimonia?
-Eudaimonia is the keyword I chose to name this repo, containing my complete system-wide configuration.
+Eudaimonia is a keyword for happiness. I chose it to name this repo, which contains my complete system-wide configuration, spanning through multiple different repositories.
 
-My system consists of multiple components, some of them distinct enough that I chose to manage as individual repositories. Because of this, I have a "dotfiles" repository, which consists of my `xstow`-managed system configuration, while other dependant components are stored as repositories to enable their indepedent management. 
+Some of the components on my system are distinct enough that they don't all fit under a "dotfiles" repository. It is because of this that having this meta-repository is useful, when I want to pull all of my system's components, not just the core configurations located on akai-hana/dotfiles.
 
-This repository also provides automation utilities, to automate the syncing of all repository modules inside, upon launching my system. This way, these repositories are always up-to-date as my system's configuration changes.    
+This repository also provides automation utilities, to automate the configuration (addition/subtraction) and syncing of all repository modules inside, upon launching my system. This way, these repositories are always automatically configured and up-to-date as my system's configuration changes.    
 
 </div>
