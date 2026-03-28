@@ -1,7 +1,7 @@
 <div align="center">
 
 # eudaimonia _(εὐδαιμονία)_
-###### _noun_ · happiness; well-being. _Aristotelianism_ · happiness as the result of an active life governed by reason.
+###### _noun_ · happiness; well-being.
 
 ![](https://raw.githubusercontent.com/akai-hana/assets/main/eudaimonia.png)
 
@@ -17,11 +17,10 @@ cd eudaimonia
 ```
 
 # About εὐδαιμονία
-## What is eudaimonia?
-Eudaimonia is a keyword for happiness. I chose it to name this repo, which contains my complete system-wide configuration, spanning through multiple different repositories.
+Eudaimonia is a synonym of happiness. I chose it to name this meta-repo, which contains my complete system-wide configuration, which spans through multiple repositories.
 
-Some of the components on my system are distinct enough that they don't all fit under a "dotfiles" repository. It is because of this that having this meta-repository is useful, when I want to pull all of my system's components, not just the core configurations located on akai-hana/dotfiles.
+Some of the components on my system are distinct enough that they don't all fit under a single "dotfiles" repository, so that's why this meta-repository is useful.
 
-This repository also provides automation utilities, to automate the configuration (addition/subtraction) and syncing of all repository modules inside, upon launching my system. This way, these repositories are always automatically configured and up-to-date as my system's configuration changes.    
+Eudaimonia doesn't actually contain much itself. Instead it just collects multiple other repos in a single place, hence me calling it a "meta"-repo.
 
-</div>
+When I want to pull all of my system's components, this repository provides some utilities to automate the configuration and syncing of all repositories inside, setting them as "modules". This way, these repositories are always automatically configured and up-to-date as my system's configuration changes, through a simple cron job, or appending the script's execution on each xinit.
