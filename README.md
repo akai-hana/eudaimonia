@@ -17,10 +17,8 @@ cd eudaimonia
 ```
 
 # About εὐδαιμονία
-Eudaimonia is a synonym of happiness. I chose it to name this meta-repo, which contains my complete system-wide configuration, which spans through multiple repositories.
+Eudaimonia (synonym of happiness) is this repository, which contains my complete system-wide configuration, spanning through multiple repositories.
 
-Some of the components on my system are distinct enough that they don't all fit under a single "dotfiles" repository, so that's why this meta-repository is useful.
+Some of the components on my system are distinct enough that they just don't fit under a single "dotfiles" repository, and instead are stored on their own repositories. The combination of all of these are what make my entire system.
 
-Eudaimonia doesn't actually contain much itself. Instead it just collects multiple other repos in a single place, hence me calling it a "meta"-repo.
-
-When I want to pull all of my system's components, this repository provides some utilities to automate the configuration and syncing of all repositories inside, setting them as "modules". This way, these repositories are always automatically configured and up-to-date as my system's configuration changes, through a simple cron job, or appending the script's execution on each xinit.
+In here I also provide some utilities to automate the configuration and syncing of all repositories inside, setting them as git modules. This way, these repositories are always automatically configured and up-to-date as my system's configuration changes, through a simple cron job or however else, to achieve some sort of scuffed CI or backup of my system's configurations.
