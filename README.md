@@ -17,8 +17,10 @@ cd eudaimonia
 ```
 
 # About εὐδαιμονία
-Eudaimonia (synonym of happiness) is this repository, which contains my complete system-wide configuration, spanning through multiple repositories.
+This repository contains my complete system-wide configuration. It spans through multiple repositories, including a general dotfiles repo as well as other repositories I've created to separate some components apart.
 
-Some of the components on my system are distinct enough that they just don't fit under a single "dotfiles" repository, and instead are stored on their own repositories. The combination of all of these are what make my entire system.
+Some of the components on my system are distinct enough that I decided to dedicate them their own repository, instead of cramming them all under a single "dotfiles" repository. With this though, I lost the centralization benefit of a mono-repo.
 
-In here I also provide some utilities to automate the configuration and syncing of all repositories inside, setting them as git modules. This way, these repositories are always automatically configured and up-to-date as my system's configuration changes, through a simple cron job or however else, to achieve some sort of scuffed CI or backup of my system's configurations.
+To gain this back, I made this eudaimonia repo, which unifies all of the repositories into one meta-repository, bringing back this convenience while also keeping dedicated components separate.
+
+In addition, I also provide some utilities to automate the configuration and syncing of all repositories inside, setting them as git modules. This way, these repositories are always automatically backed up, configured and up-to-date as my system's configuration changes through the time, with the help of a a simple cron job.
