@@ -1,0 +1,1 @@
+Enable CONFIG_BRIDGE (and CONFIG_VETH) in your kernel config, rebuild, reboot. That's the module causing error 95.
